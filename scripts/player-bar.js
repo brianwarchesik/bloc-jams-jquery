@@ -28,7 +28,20 @@
         if (PREVIOUSSONGINDEX <= -1)
             {return};
 
-        const PREVIOSSONG = album.songs[PREVIOUSSONGINDEX];
-        player.playPause(PREVIOSSONG);
+        const PREVIOUSSONG = album.songs[PREVIOUSSONGINDEX];
+        player.playPause(PREVIOUSSONG);
     });
+
+    $('#time-control input').on('input', function (event) {
+        player.skipTo(event.target.value);
+    });
+
+    setInterval( () => {
+        if (player.playState !== 'playing') { return; }
+        const CURRENTTIME = player.getTime();
+        const DURATION = player.getDuration();
+        const PERCENT = (CURRENTTIME / DURATION) * 100;
+        $('#time-control .current-time').text( CURRENTTIME );
+        $('#time-control input').val(PERCENT);
+    }, 1000);
 }
