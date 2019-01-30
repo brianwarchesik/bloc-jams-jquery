@@ -17,4 +17,18 @@
         const NEXTSONG = album.songs[NEXTSONGINDEX];
         player.playPause(NEXTSONG);
     });
+
+    $('button#previous').on('click', function() {
+        if (player.playState !== 'playing')
+            {return};
+
+        const CURRENTSONGINDEX = album.songs.indexOf(player.currentlyPlaying);
+        const PREVIOUSSONGINDEX = CURRENTSONGINDEX -1;
+
+        if (PREVIOUSSONGINDEX <= -1)
+            {return};
+
+        const PREVIOSSONG = album.songs[PREVIOUSSONGINDEX];
+        player.playPause(PREVIOSSONG);
+    });
 }
