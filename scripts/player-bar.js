@@ -45,8 +45,8 @@
         const CURRENTTIME = player.getTime();
         const DURATION = player.getDuration();
         const PERCENT = (CURRENTTIME / DURATION) * 100;
-        $('#time-control .total-time').text( DURATION );
-        $('#time-control .current-time').text( CURRENTTIME );
+        $('#time-control .total-time').text(player.prettyTime(DURATION));
+        $('#time-control .current-time').text(player.prettyTime(CURRENTTIME));
         $('#time-control input').val(PERCENT);
     }, 1000);
 }
